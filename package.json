@@ -5,14 +5,14 @@
 	"homepage": "https://github.com/emiyaaaaa/next-routes-list",
 	"license": "ISC",
 	"author": "Haozheng Li",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"main": "./dist/routes.js",
+	"types": "./dist/routes.d.ts",
 	"bin": {
 		"generate-next-routes-list": "./dist/generate.js"
 	},
 	"files": ["dist", "README.md", "package.json"],
 	"scripts": {
-		"build": "tsc",
+		"build": "rm -rf dist && tsc",
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
