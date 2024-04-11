@@ -1,0 +1,27 @@
+{
+	"name": "next-routes-list",
+	"version": "0.0.1",
+	"description": "",
+	"homepage": "https://github.com/emiyaaaaa/next-routes-list",
+	"license": "ISC",
+	"author": "Haozheng Li",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"bin": {
+		"generate-next-routes-list": "./dist/generate.js"
+	},
+	"files": ["dist", "README.md", "package.json"],
+	"scripts": {
+		"build": "tsc",
+		"prepublishOnly": "npm run build"
+	},
+	"dependencies": {
+		"list-paths": "1.0.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.6.4",
+		"@emiyaaaaa/tsconfig": "^1.0.2",
+		"@types/node": "^20.10.7",
+		"typescript": "latest"
+	}
+}

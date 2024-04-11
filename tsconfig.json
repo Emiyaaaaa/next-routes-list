@@ -1,0 +1,6 @@
+{
+	"extends": "@emiyaaaaa/tsconfig",
+	"compilerOptions": {
+		"outDir": "dist"
+	}
+}
