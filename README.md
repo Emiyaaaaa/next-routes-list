@@ -8,7 +8,7 @@ npm install --save-dev next-routes-list@latest
 ## Usage
 
 1. run script
-```json
+```
 // package.json
 {
   script: {
