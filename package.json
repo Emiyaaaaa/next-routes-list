@@ -1,7 +1,8 @@
 {
 	"name": "next-routes-list",
 	"version": "0.0.1",
-	"description": "",
+	"description": "generate next all routes list",
+	"keywords": ["next", "app", "routes", "route list", "paths"],
 	"homepage": "https://github.com/emiyaaaaa/next-routes-list",
 	"license": "ISC",
 	"author": "Haozheng Li",
