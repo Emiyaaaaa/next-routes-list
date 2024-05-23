@@ -1,52 +1,104 @@
 import listPaths from "list-paths";
 
 export function getNextRoutes(
-	src = "./app",
-	extensions = ["tsx", "ts", "js", "jsx", "md", "mdx"]
+	src = "./",
+	extensions = ["tsx", "ts", "js", "jsx", "mdx"]
 ) {
-	const pagePaths = listPaths(src, { includeFiles: true }).filter((path) => {
-		const file = path.split("/").at(-1);
-		const filename = file?.split(".").at(-2);
-		const extension = file?.split(".").at(-1);
-		return extension && extensions.includes(extension) && filename === "page";
-	});
+	// next app routes
+	const appPaths = listPaths(`${src}app`, { includeFiles: true }).filter(
+		(path) => {
+			const file = path.split("/").at(-1);
+			const filename = file?.split(".").at(-2);
+			const extension = file?.split(".").at(-1);
+			return extension && extensions.includes(extension) && filename === "page";
+		}
+	);
+
+	// next pages routes
+	const pagePaths = listPaths(`${src}pages`, { includeFiles: true }).filter(
+		(path) => {
+			if (path?.includes("/pages/api/")) return false;
+			const file = path.split("/").at(-1);
+			const extension = file?.split(".").at(-1);
+			return extension && extensions.includes(extension);
+		}
+	);
+
 	/**
-  => paths = [
+  appRoutes = [
     '/app/(group)/blog/page.tsx', => route should be '/blog'
     '/app/(group)/blog/[...slug]/page.tsx', => route should be '/blog/[...slug]'
     '/app/@component/blog/page.tsx', // should remove, because it's not a page
     '/app/blog/(..)list/page.tsx', // should remove, because it's not a page
   ]
   */
+	const appRoutes = appPaths
+		.map((path) => {
+			const parts = path.split(src)[1]?.split("/").filter(Boolean) ?? [];
 
-	const routes = pagePaths.map((path) => {
-		const parts = path.split(src)[1]?.split("/").filter(Boolean) ?? [];
+			const url: string[] = [];
 
-		const url: string[] = [];
+			for (let i = 0; i < parts.length; i++) {
+				const part = parts[i];
+				if (!part) continue;
 
-		for (let i = 0; i < parts.length; i++) {
-			const part = parts[i];
-			if (!part) continue;
+				if (i === 0 && part === "app") continue;
 
-			const isGroupRoute = part.startsWith("(") && part.endsWith(")");
-			if (isGroupRoute) continue;
+				const isGroupRoute = part.startsWith("(") && part.endsWith(")");
+				if (isGroupRoute) continue;
 
-			const isInterceptingRoute = part.startsWith("(") && !part.endsWith(")");
-			if (isInterceptingRoute) return null;
+				const isInterceptingRoute = part.startsWith("(") && !part.endsWith(")");
+				if (isInterceptingRoute) return null;
 
-			const isParallelRoute = part.startsWith("@");
-			if (isParallelRoute) return null;
+				const isParallelRoute = part.startsWith("@");
+				if (isParallelRoute) return null;
 
-			// ignore 'page.tsx' on url path
-			if (i === parts.length - 1) continue;
+				// ignore 'page.tsx' on url path
+				if (i === parts.length - 1) continue;
 
-			url.push(part);
-		}
+				url.push(part);
+			}
 
-		return `/${url.join("/")}`;
-	});
+			return `/${url.join("/")}`;
+		})
+		.filter(Boolean);
 
-	const unDuplicatedRoutes = Array.from(new Set(routes));
+	/**
+  pageRoutes = [
+    '/pages/blog.js', => route should be '/blog'
+    '/pages/[slug].js', => route should be '/[...slug]'
+  ]
+  */
+	const pagesRoutes = pagePaths
+		.map((path) => {
+			const parts = path.split(src)[1]?.split("/").filter(Boolean) ?? [];
+
+			const url: string[] = [];
+
+			for (let i = 0; i < parts.length; i++) {
+				let part = parts[i];
+				if (!part) continue;
+
+				if (i === 0 && part === "pages") continue;
+
+				if (i === parts.length - 1) {
+					part = part.split(".").at(-2) ?? "";
+
+					if (part === "index") {
+						continue;
+					}
+				}
+
+				url.push(part);
+			}
+
+			return `/${url.join("/")}`;
+		})
+		.filter(Boolean);
+
+	const unDuplicatedRoutes = Array.from(
+		new Set([...appRoutes, ...pagesRoutes])
+	);
 
 	return unDuplicatedRoutes;
 }

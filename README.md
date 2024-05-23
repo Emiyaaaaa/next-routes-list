@@ -1,9 +1,9 @@
 # next-routes-list
-Easy generate all available routes in Next.js
+Easy generate all available routes in Next.js .
 
 ## Support
 - [x] App routes
-- [ ] Page routes
+- [x] Page routes
 
 ## Install
 ```bash
@@ -41,3 +41,8 @@ console.log(routes)
 */
 ```
 
+## Example
+next projct is [here](./test/next-project/), generate result is: [here](./test/routes.js).
+
+## Contribute
+feel free to contribute anything or report any issues you find.

@@ -2,5 +2,6 @@
 	"extends": "@emiyaaaaa/tsconfig",
 	"compilerOptions": {
 		"outDir": "dist"
-	}
+	},
+	"exclude": ["test"]
 }
