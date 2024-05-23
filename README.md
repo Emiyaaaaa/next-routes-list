@@ -1,17 +1,23 @@
 # next-routes-list
+Easy generate all available routes in Next.js
 
-## Start
+## Support
+- [x] App routes
+- [ ] Page routes
+
+## Install
 ```bash
 npm install --save-dev next-routes-list@latest
 ```
 
 ## Usage
 
-1. run script
-```
-// package.json
+1. Run script
+
+package.json
+```json
 {
-  script: {
+  "script": {
     "generate-next-routes-list": "generate-next-routes-list"
   }
 }
@@ -20,7 +26,7 @@ npm install --save-dev next-routes-list@latest
 npm run generate-next-routes-list
 ```
 
-2. import routes
+2. Import routes
 ```ts
 import { routes } from 'next-routes-list'
 
