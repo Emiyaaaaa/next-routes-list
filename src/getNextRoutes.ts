@@ -12,10 +12,10 @@ export function getNextRoutes(
 	});
 	/**
   => paths = [
-    './app/(group)/blog/page.tsx', => route should be '/blog'
-    './app/(group)/blog/[...slug]/page.tsx', => route should be '/blog/[...slug]'
-    './app/@component/blog/page.tsx', // should remove, because it's not a page
-    './app/blog/(..)list/page.tsx', // should remove, because it's not a page
+    '/app/(group)/blog/page.tsx', => route should be '/blog'
+    '/app/(group)/blog/[...slug]/page.tsx', => route should be '/blog/[...slug]'
+    '/app/@component/blog/page.tsx', // should remove, because it's not a page
+    '/app/blog/(..)list/page.tsx', // should remove, because it's not a page
   ]
   */
 

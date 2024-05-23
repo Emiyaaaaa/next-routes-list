@@ -33,9 +33,9 @@ import { routes } from 'next-routes-list'
 console.log(routes)
 /**
 [
-  './',
-  './about',
-  './posts/[id]',
+  '/',
+  '/about',
+  '/posts/[id]',
   ...
 ]
 */
