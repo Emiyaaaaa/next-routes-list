@@ -45,4 +45,4 @@ console.log(routes)
 next projct is [here](./test/next-project/), generate result is: [here](./test/routes.js).
 
 ## Contribute
-feel free to contribute anything or report any issues you find.
+feel free to contribute anything or report any issues.
