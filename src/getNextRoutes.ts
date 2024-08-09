@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import listPaths from "list-paths";
 
 export function getNextRoutes(
@@ -5,24 +6,29 @@ export function getNextRoutes(
 	extensions = ["tsx", "ts", "js", "jsx", "mdx"]
 ) {
 	// next app routes
-	const appPaths = listPaths(`${src}app`, { includeFiles: true }).filter(
-		(path) => {
+	// if app exists
+	let appPaths: string[] = [];
+	if (fs.existsSync(`${src}app`)) {
+		appPaths = listPaths(`${src}app`, { includeFiles: true }).filter((path) => {
 			const file = path.split("/").at(-1);
 			const filename = file?.split(".").at(-2);
 			const extension = file?.split(".").at(-1);
 			return extension && extensions.includes(extension) && filename === "page";
-		}
-	);
+		});
+	}
 
 	// next pages routes
-	const pagePaths = listPaths(`${src}pages`, { includeFiles: true }).filter(
-		(path) => {
-			if (path?.includes("/pages/api/")) return false;
-			const file = path.split("/").at(-1);
-			const extension = file?.split(".").at(-1);
-			return extension && extensions.includes(extension);
-		}
-	);
+	let pagePaths: string[] = [];
+	if (fs.existsSync(`${src}pages`)) {
+		pagePaths = listPaths(`${src}pages`, { includeFiles: true }).filter(
+			(path) => {
+				if (path?.includes("/pages/api/")) return false;
+				const file = path.split("/").at(-1);
+				const extension = file?.split(".").at(-1);
+				return extension && extensions.includes(extension);
+			}
+		);
+	}
 
 	/**
   appRoutes = [
