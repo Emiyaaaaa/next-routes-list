@@ -1,4 +1,5 @@
 exports.routes = [
+	"/_log_",
 	"/page-in-sub-group",
 	"/page-in-group",
 	"/page1-in-group",

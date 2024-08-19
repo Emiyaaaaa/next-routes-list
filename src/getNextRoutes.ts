@@ -36,6 +36,8 @@ export function getNextRoutes(
     '/app/(group)/blog/[...slug]/page.tsx', => route should be '/blog/[...slug]'
     '/app/@component/blog/page.tsx', // should remove, because it's not a page
     '/app/blog/(..)list/page.tsx', // should remove, because it's not a page
+		'/app/_private/page.tsx', // should remove, because it's a private folder
+		'/app/%5Flog%5F/page.tsx', // should be '/_log_'
   ]
   */
 	const appRoutes = appPaths
@@ -45,10 +47,13 @@ export function getNextRoutes(
 			const url: string[] = [];
 
 			for (let i = 0; i < parts.length; i++) {
-				const part = parts[i];
+				let part = parts[i];
 				if (!part) continue;
 
 				if (i === 0 && part === "app") continue;
+
+				const isPrivateRoute = part.startsWith("_");
+				if (isPrivateRoute) return null;
 
 				const isGroupRoute = part.startsWith("(") && part.endsWith(")");
 				if (isGroupRoute) continue;
@@ -61,6 +66,9 @@ export function getNextRoutes(
 
 				// ignore 'page.tsx' on url path
 				if (i === parts.length - 1) continue;
+
+				// replace %5F to _
+				part = part.replace(/%5F/g, "_");
 
 				url.push(part);
 			}
