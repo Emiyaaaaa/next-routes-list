@@ -21,7 +21,6 @@
 		"list-paths": "1.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.6.4",
 		"@emiyaaaaa/tsconfig": "^1.0.2",
 		"@types/node": "^20.10.7",
 		"typescript": "latest"
