@@ -1,6 +1,6 @@
 {
   "name": "next-routes-list",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "generate next all routes list",
   "keywords": [
     "next",
@@ -25,7 +25,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && cd test/next-project && node ../../dist/generate.js && node -e 'JSON.stringify(require(\"../routes.js\").routes)===JSON.stringify(require(\"../../dist/routes.js\").routes) ? console.log(\"app route test succeeded\") : throw new Error(\"app route test failed\")'"
+    "test": "npm run build && cd test/next-project && node ../../dist/generate.js && node -e \"if (JSON.stringify(require('../routes.js').routes) === JSON.stringify(require('../../dist/routes.js').routes)) { console.log('Test succeeded'); } else { throw new Error('Test failed'); }\""
   },
   "dependencies": {
     "list-paths": "1.0.2"
