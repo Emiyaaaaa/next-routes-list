@@ -15,7 +15,7 @@ npm install --save-dev next-routes-list@latest
 
 ## Usage
 
-### 1. Run script
+### Step 1. Run script
 
 add script to `package.json`:
 
@@ -27,12 +27,22 @@ add script to `package.json`:
 }
 ```
 
-If you use `src` directory:
+Or if you using `src` directory:
 
 ```json
 {
   "script": {
     "generate-next-routes-list": "cd src && npx generate-next-routes-list"
+  }
+}
+```
+
+Or if you want specify the output file:
+
+```json
+{
+  "script": {
+    "generate-next-routes-list": "generate-next-routes-list -o routes.ts"
   }
 }
 ```
@@ -43,10 +53,13 @@ then run npm script:
 npm run generate-next-routes-list
 ```
 
-### 2. Import routes
+### Step 2. Import routes
 
 ```ts
 import { routes } from "next-routes-list";
+// or if you specify the output file
+import { routes } from "./routes.ts";
+
 
 console.log(routes);
 /**
