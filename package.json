@@ -10,7 +10,7 @@
     "paths"
   ],
   "homepage": "https://github.com/emiyaaaaa/next-routes-list",
-  "license": "ISC",
+  "license": "MIT",
   "author": "Haozheng Li",
   "main": "./dist/routes.js",
   "types": "./dist/routes.d.ts",
