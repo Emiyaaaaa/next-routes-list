@@ -17,7 +17,7 @@ npm install --save-dev next-routes-list@latest
 
 ### Step 1. Run script
 
-add script to `package.json`:
+Add script to `package.json`:
 
 ```json
 {
@@ -47,7 +47,7 @@ Or if you want specify the output file:
 }
 ```
 
-then run npm script:
+Then run npm script:
 
 ```shell
 npm run generate-next-routes-list
@@ -80,8 +80,8 @@ console.log(routes);
 
 ## Example
 
-next projct is [here](./test/next-project/), generate result is: [here](./test/routes.js).
+[Here](https://github.com/Emiyaaaaa/next-routes-list/tree/main/test/next-project) is a next.js project, [here](https://github.com/Emiyaaaaa/next-routes-list/blob/main/test/routes.js) is the generate result.
 
 ## Contribute
 
-feel free to contribute anything or report any issues.
+Feel free to contribute anything or report any issues.
