@@ -25,7 +25,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "prepublishOnly": "npm run build",
-    "test": "npm run build && cd test/next-project && node ../../dist/generate.js && node -e \"if (JSON.stringify(require('../routes.js').routes) === JSON.stringify(require('../../dist/routes.js').routes)) { console.log('Test succeeded'); } else { throw new Error('Test failed'); }\""
+    "test": "npm run build && node test/run-tests.js"
   },
   "dependencies": {
     "list-paths": "1.0.2"

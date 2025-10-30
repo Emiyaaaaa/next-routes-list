@@ -34,6 +34,7 @@ export function getNextRoutes(
   appRoutes = [
     '/app/(group)/blog/page.tsx', => route should be '/blog'
     '/app/(group)/blog/[...slug]/page.tsx', => route should be '/blog/[...slug]'
+    '/app/(group)/blog/[[...slug2]]/page.tsx', => route should be '/blog/[[...slug2]]'
     '/app/@component/blog/page.tsx', // should remove, because it's not a page
     '/app/blog/(..)list/page.tsx', // should remove, because it's not a page
 		'/app/_private/page.tsx', // should remove, because it's a private folder
